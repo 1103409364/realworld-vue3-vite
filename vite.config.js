@@ -1,6 +1,7 @@
 import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
 import { defineConfig } from "vite";
+import components from "unplugin-vue-components/vite";
 import analyzer from "rollup-plugin-analyzer";
 
 export default defineConfig({
@@ -9,7 +10,14 @@ export default defineConfig({
       src: resolve(__dirname, "src"),
     },
   },
-  plugins: [vue(), analyzer({ summaryOnly: true })],
+  plugins: [
+    vue(),
+    components({
+      dirs: ["src/components"], // 自动导入自己的组件，默认src/components
+      dts: true,
+    }),
+    analyzer({ summaryOnly: true }),
+  ],
   server: {
     // host: ENV.VITE_APP_HOST,
     // port: ENV.VITE_APP_PORT,
