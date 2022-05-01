@@ -23,6 +23,7 @@ module.exports = {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
     "prettier/prettier": ["error", { singleQuote: false }],
+    "no-undef": "off",
     "vue/component-name-in-template-casing": [
       "error",
       "PascalCase",
