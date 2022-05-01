@@ -1,27 +1,29 @@
 interface FetchResponseBody {
-  type: 'body'
+  type: "body";
 }
 interface FetchResponseFull {
-  type: 'full'
-  ok: boolean
-  status: number
-  statusText: string
-  json: () => Promise<unknown>
+  type: "full";
+  ok: boolean;
+  status: number;
+  statusText: string;
+  json: () => Promise<unknown>;
 }
 
-export default function mockFetch (data: FetchResponseBody | FetchResponseFull): void {
-  let response
-  const { type, ...body } = data
+export default function mockFetch(
+  data: FetchResponseBody | FetchResponseFull
+): void {
+  let response;
+  const { type, ...body } = data;
 
-  if (type === 'body') {
+  if (type === "body") {
     response = {
       ok: true,
       status: 200,
       json: async () => body,
-    }
+    };
   } else {
-    response = body
+    response = body;
   }
 
-  global.fetch = jest.fn().mockResolvedValue(response)
+  global.fetch = jest.fn().mockResolvedValue(response);
 }

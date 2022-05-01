@@ -1,7 +1,7 @@
-import { request } from 'src/services'
-import { userStorage } from 'src/store/user'
+import { request } from "src/services";
+import { userStorage } from "src/store/user";
 
 export default function (): void {
-  const token = userStorage.get()?.token
-  if (token !== undefined) request.setAuthorizationHeader(token)
+  const token = userStorage.get()?.token;
+  if (token !== undefined) request.setAuthorizationHeader(token);
 }

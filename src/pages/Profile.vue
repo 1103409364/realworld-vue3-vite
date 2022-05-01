@@ -4,17 +4,11 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-md-10 offset-md-1">
-            <div
-              v-if="!profile"
-              class="align-left"
-            >
+            <div v-if="!profile" class="align-left">
               Profile is downloading...
             </div>
             <template v-else>
-              <img
-                :src="profile.image"
-                class="user-img"
-              >
+              <img :src="profile.image" class="user-img" />
 
               <h4>{{ profile.username }}</h4>
 
@@ -38,7 +32,8 @@
                 @click="toggleFollow"
               >
                 <i class="ion-plus-round space" />
-                {{ profile.following ? "Unfollow" : "Follow" }} {{ profile.username }}
+                {{ profile.following ? "Unfollow" : "Follow" }}
+                {{ profile.username }}
               </button>
             </template>
           </div>
@@ -50,13 +45,8 @@
       <div class="row">
         <div class="col-xs-12 col-md-10 offset-md-1">
           <Suspense>
-            <ArticlesList
-              use-user-feed
-              use-user-favorited
-            />
-            <template #fallback>
-              Articles are downloading...
-            </template>
+            <ArticlesList use-user-feed use-user-favorited />
+            <template #fallback>Articles are downloading...</template>
           </Suspense>
         </div>
       </div>
@@ -65,27 +55,29 @@
 </template>
 
 <script setup lang="ts">
-import ArticlesList from 'src/components/ArticlesList.vue'
-import { useFollow } from 'src/composable/useFollowProfile'
-import { useProfile } from 'src/composable/useProfile'
-import { checkAuthorization, user } from 'src/store/user'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useFollow } from "src/composable/useFollowProfile";
+import { useProfile } from "src/composable/useProfile";
+import { checkAuthorization, user } from "src/store/user";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 
-const route = useRoute()
-const username = computed<string>(() => route.params.username as string)
+const route = useRoute();
+const username = computed<string>(() => route.params.username as string);
 
-const { profile, updateProfile } = useProfile({ username })
+const { profile, updateProfile } = useProfile({ username });
 
 const { followProcessGoing, toggleFollow } = useFollow({
   following: computed<boolean>(() => profile.value?.following ?? false),
   username,
   onUpdate: (newProfileData: Profile) => updateProfile(newProfileData),
-})
+});
 
-const showEdit = computed<boolean>(() => checkAuthorization(user) && user.value.username === username.value)
-const showFollow = computed<boolean>(() => user.value?.username !== username.value)
-
+const showEdit = computed<boolean>(
+  () => checkAuthorization(user) && user.value.username === username.value
+);
+const showFollow = computed<boolean>(
+  () => user.value?.username !== username.value
+);
 </script>
 
 <style scoped>
@@ -93,6 +85,6 @@ const showFollow = computed<boolean>(() => user.value?.username !== username.val
   margin-right: 4px;
 }
 .align-left {
-  text-align: left
+  text-align: left;
 }
 </style>

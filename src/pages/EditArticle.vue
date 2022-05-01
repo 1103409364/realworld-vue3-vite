@@ -10,7 +10,7 @@
                 type="text"
                 class="form-control form-control-lg"
                 placeholder="Article Title"
-              >
+              />
             </fieldset>
             <fieldset class="form-group">
               <input
@@ -18,7 +18,7 @@
                 type="text"
                 class="form-control form-control-lg"
                 placeholder="What's this article about?"
-              >
+              />
             </fieldset>
             <fieldset class="form-group">
               <textarea
@@ -36,17 +36,14 @@
                 placeholder="Enter tags"
                 @change="addTag"
                 @keypress.enter.prevent="addTag"
-              >
+              />
               <div class="tag-list">
                 <span
                   v-for="tag in form.tagList"
                   :key="tag"
                   class="tag-default tag-pill"
                 >
-                  <i
-                    class="ion-close-round"
-                    @click="removeTag(tag)"
-                  />
+                  <i class="ion-close-round" @click="removeTag(tag)" />
                   {{ tag }}
                 </span>
               </div>
@@ -66,10 +63,10 @@
 </template>
 
 <script setup lang="ts">
-import { getArticle } from 'src/services/article/getArticle'
-import { postArticle, putArticle } from 'src/services/article/postArticle'
-import { computed, onMounted, reactive, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { getArticle } from "src/services/article/getArticle";
+import { postArticle, putArticle } from "src/services/article/postArticle";
+import { computed, onMounted, reactive, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 interface FormState {
   title: string;
@@ -78,48 +75,47 @@ interface FormState {
   tagList: string[];
 }
 
-const route = useRoute()
-const router = useRouter()
-const slug = computed<string>(() => route.params.slug as string)
+const route = useRoute();
+const router = useRouter();
+const slug = computed<string>(() => route.params.slug as string);
 
 const form: FormState = reactive({
-  title: '',
-  description: '',
-  body: '',
+  title: "",
+  description: "",
+  body: "",
   tagList: [],
-})
+});
 
-const newTag = ref<string>('')
+const newTag = ref<string>("");
 const addTag = () => {
-  form.tagList.push(newTag.value.trim())
-  newTag.value = ''
-}
+  form.tagList.push(newTag.value.trim());
+  newTag.value = "";
+};
 const removeTag = (tag: string) => {
-  form.tagList = form.tagList.filter(t => t !== tag)
-}
+  form.tagList = form.tagList.filter((t) => t !== tag);
+};
 
-async function fetchArticle (slug: string) {
-  const article = await getArticle(slug)
+async function fetchArticle(slug: string) {
+  const article = await getArticle(slug);
 
   // FIXME: I always feel a little wordy here
-  form.title = article.title
-  form.description = article.description
-  form.body = article.body
-  form.tagList = article.tagList
+  form.title = article.title;
+  form.description = article.description;
+  form.body = article.body;
+  form.tagList = article.tagList;
 }
 
 onMounted(() => {
-  if (slug.value) fetchArticle(slug.value)
-})
+  if (slug.value) fetchArticle(slug.value);
+});
 
 const onSubmit = async () => {
-  let article: Article
+  let article: Article;
   if (slug.value) {
-    article = await putArticle(slug.value, form)
+    article = await putArticle(slug.value, form);
   } else {
-    article = await postArticle(form)
+    article = await postArticle(form);
   }
-  return router.push({ name: 'article', params: { slug: article.slug } })
-}
-
+  return router.push({ name: "article", params: { slug: article.slug } });
+};
 </script>

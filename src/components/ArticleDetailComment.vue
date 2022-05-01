@@ -9,26 +9,25 @@
     <div class="card-footer">
       <AppLink
         name="profile"
-        :params="{username: comment.author.username}"
+        :params="{ username: comment.author.username }"
         class="comment-author"
       >
-        <img
-          :src="comment.author.image"
-          class="comment-author-img"
-        >
+        <img :src="comment.author.image" class="comment-author-img" />
       </AppLink>
 
       &nbsp;
 
       <AppLink
         name="profile"
-        :params="{username: comment.author.username}"
+        :params="{ username: comment.author.username }"
         class="comment-author"
       >
         {{ comment.author.username }}
       </AppLink>
 
-      <span class="date-posted">{{ (new Date(comment.createdAt)).toLocaleDateString() }}</span>
+      <span class="date-posted">
+        {{ new Date(comment.createdAt).toLocaleDateString() }}
+      </span>
 
       <span class="mod-options">
         <i
@@ -44,21 +43,23 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from "vue";
 
 interface Props {
-  comment: ArticleComment
-  username?: string
+  comment: ArticleComment;
+  username?: string;
 }
 
 interface Emits {
-  (e: 'remove-comment'): boolean
+  (e: "remove-comment"): boolean;
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emits>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
-const showRemove = computed(() => (
-  props.username !== undefined && props.username === props.comment.author.username
-))
+const showRemove = computed(
+  () =>
+    props.username !== undefined &&
+    props.username === props.comment.author.username
+);
 </script>

@@ -1,13 +1,13 @@
-declare module '*.vue' {
-  import { defineComponent } from 'vue'
-  const Component: ReturnType<typeof defineComponent>
+declare module "*.vue" {
+  import { defineComponent } from "vue";
+  const Component: ReturnType<typeof defineComponent>;
 
-  export default Component
+  export default Component;
 }
 
 interface ImportMeta {
   env: {
-    BASE_URL: string
-    VITE_API_HOST: string
-  }
+    BASE_URL: string;
+    VITE_API_HOST: string;
+  };
 }

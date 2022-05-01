@@ -1,17 +1,17 @@
-import { render } from '@testing-library/vue'
-import { router } from 'src/router'
-import Article from './Article.vue'
+import { render } from "@testing-library/vue";
+import { router } from "src/router";
+import Article from "./Article.vue";
 
-describe('# Article', () => {
+describe("# Article", () => {
   beforeEach(async () => {
-    await router.push('/')
-  })
+    await router.push("/");
+  });
 
-  it('should render correctly', () => {
+  it("should render correctly", () => {
     const { container } = render(Article, {
       global: { plugins: [router] },
-    })
+    });
 
-    expect(container.textContent).toContain('Article is downloading')
-  })
-})
+    expect(container.textContent).toContain("Article is downloading");
+  });
+});
