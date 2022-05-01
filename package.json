@@ -70,7 +70,6 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{ts,vue,scss}": "prettier --write",
     "src/**/*.{ts,vue}": "eslint --fix",
     "cypress/**/*.js": "eslint --fix"
   },
