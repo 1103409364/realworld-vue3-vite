@@ -1,3 +1,7 @@
 .eslintrc.js
 prettier.config.js
 index.html
+build/*.js
+src/assets
+public
+dist
