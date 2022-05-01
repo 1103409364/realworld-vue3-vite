@@ -24,6 +24,11 @@ module.exports = {
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
     "prettier/prettier": ["error", { singleQuote: false }],
     "no-undef": "off",
+    "@typescript-eslint/promise-function-async": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "vue/multi-word-component-names": "off",
     "vue/component-name-in-template-casing": [
       "error",
       "PascalCase",
