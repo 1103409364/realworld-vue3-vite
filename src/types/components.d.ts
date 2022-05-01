@@ -5,19 +5,19 @@ import "@vue/runtime-core";
 
 declare module "@vue/runtime-core" {
   export interface GlobalComponents {
-    AppFooter: typeof import("./src/components/AppFooter.vue")["default"];
-    AppLink: typeof import("./src/components/AppLink.vue")["default"];
-    AppNavigation: typeof import("./src/components/AppNavigation.vue")["default"];
-    AppPagination: typeof import("./src/components/AppPagination.vue")["default"];
-    ArticleDetail: typeof import("./src/components/ArticleDetail.vue")["default"];
-    ArticleDetailComment: typeof import("./src/components/ArticleDetailComment.vue")["default"];
-    ArticleDetailComments: typeof import("./src/components/ArticleDetailComments.vue")["default"];
-    ArticleDetailCommentsForm: typeof import("./src/components/ArticleDetailCommentsForm.vue")["default"];
-    ArticleDetailMeta: typeof import("./src/components/ArticleDetailMeta.vue")["default"];
-    ArticlesList: typeof import("./src/components/ArticlesList.vue")["default"];
-    ArticlesListArticlePreview: typeof import("./src/components/ArticlesListArticlePreview.vue")["default"];
-    ArticlesListNavigation: typeof import("./src/components/ArticlesListNavigation.vue")["default"];
-    PopularTags: typeof import("./src/components/PopularTags.vue")["default"];
+    AppFooter: typeof import("./../components/AppFooter.vue")["default"];
+    AppLink: typeof import("./../components/AppLink.vue")["default"];
+    AppNavigation: typeof import("./../components/AppNavigation.vue")["default"];
+    AppPagination: typeof import("./../components/AppPagination.vue")["default"];
+    ArticleDetail: typeof import("./../components/ArticleDetail.vue")["default"];
+    ArticleDetailComment: typeof import("./../components/ArticleDetailComment.vue")["default"];
+    ArticleDetailComments: typeof import("./../components/ArticleDetailComments.vue")["default"];
+    ArticleDetailCommentsForm: typeof import("./../components/ArticleDetailCommentsForm.vue")["default"];
+    ArticleDetailMeta: typeof import("./../components/ArticleDetailMeta.vue")["default"];
+    ArticlesList: typeof import("./../components/ArticlesList.vue")["default"];
+    ArticlesListArticlePreview: typeof import("./../components/ArticlesListArticlePreview.vue")["default"];
+    ArticlesListNavigation: typeof import("./../components/ArticlesListNavigation.vue")["default"];
+    PopularTags: typeof import("./../components/PopularTags.vue")["default"];
     RouterLink: typeof import("vue-router")["RouterLink"];
     RouterView: typeof import("vue-router")["RouterView"];
   }

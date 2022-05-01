@@ -14,7 +14,7 @@ export default defineConfig({
     vue(),
     components({
       dirs: ["src/components"], // 自动导入自己的组件，默认src/components
-      dts: true,
+      dts: "src/types/components.d.ts",
     }),
     analyzer({ summaryOnly: true }),
   ],

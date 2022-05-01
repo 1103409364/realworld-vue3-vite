@@ -5,3 +5,4 @@ build/*.js
 src/assets
 public
 dist
+components.d.ts
