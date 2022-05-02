@@ -39,7 +39,7 @@
               />
               <div class="tag-list">
                 <span
-                  v-for="tag in form.tagList"
+                  v-for="tag in form.tags"
                   :key="tag"
                   class="tag-default tag-pill"
                 >
@@ -72,7 +72,7 @@ interface FormState {
   title: string;
   description: string;
   body: string;
-  tagList: string[];
+  tags: string[];
 }
 
 const route = useRoute();
@@ -83,26 +83,25 @@ const form: FormState = reactive({
   title: "",
   description: "",
   body: "",
-  tagList: [],
+  tags: [],
 });
 
 const newTag = ref<string>("");
 const addTag = () => {
-  form.tagList.push(newTag.value.trim());
+  form.tags.push(newTag.value.trim());
   newTag.value = "";
 };
 const removeTag = (tag: string) => {
-  form.tagList = form.tagList.filter((t) => t !== tag);
+  form.tags = form.tags.filter((t) => t !== tag);
 };
 
 async function fetchArticle(slug: string) {
   const article = await getArticle(slug);
-
-  // FIXME: I always feel a little wordy here
-  form.title = article.title;
-  form.description = article.description;
-  form.body = article.body;
-  form.tagList = article.tagList;
+  Object.assign(form, article);
+  // form.title = article.title;
+  // form.description = article.description;
+  // form.body = article.body;
+  form.tags = article.tags.map((t) => t.tag);
 }
 
 onMounted(() => {

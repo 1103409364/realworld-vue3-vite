@@ -16,7 +16,7 @@ const article: Article = {
   slug: "article-foo",
   title: "Article foo",
   author,
-  tagList: ["foo"],
+  tags: ["foo"],
   description: "Article description",
   body: `# Article body
 

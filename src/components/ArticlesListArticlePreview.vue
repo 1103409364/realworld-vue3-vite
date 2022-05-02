@@ -46,11 +46,11 @@
       <span>Read more...</span>
       <ul class="tag-list">
         <li
-          v-for="tag in article.tagList"
-          :key="tag"
+          v-for="tag in article.tags"
+          :key="tag.id"
           class="tag-default tag-pill tag-outline"
         >
-          {{ tag }}
+          {{ tag.tag }}
         </li>
       </ul>
     </AppLink>

@@ -4,7 +4,7 @@ interface PostArticleForm {
   title: string;
   description: string;
   body: string;
-  tagList: string[];
+  tags: string[];
 }
 
 export function postArticle(form: PostArticleForm): Promise<Article> {

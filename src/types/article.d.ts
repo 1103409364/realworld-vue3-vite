@@ -4,7 +4,7 @@ declare interface Article {
   body: string;
   created: string;
   updatedAt: string;
-  tagList: string[];
+  tags: string[];
   description: string;
   author: Profile;
   favorite: boolean;

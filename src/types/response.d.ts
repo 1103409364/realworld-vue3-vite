@@ -1,9 +1,11 @@
 declare interface UserResponse {
   user: User;
 }
-
+export interface Tag {
+  tag: string;
+}
 declare interface TagsResponse {
-  tags: string[];
+  tags: Tag[];
 }
 
 declare interface ProfileResponse {

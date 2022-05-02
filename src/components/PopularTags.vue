@@ -4,12 +4,12 @@
   <div class="tag-list">
     <AppLink
       v-for="tag in tags"
-      :key="tag"
+      :key="tag.id"
       name="tag"
       :params="{ tag }"
       class="tag-pill tag-default"
     >
-      {{ tag }}
+      {{ tag.tag }}
     </AppLink>
   </div>
 </template>
