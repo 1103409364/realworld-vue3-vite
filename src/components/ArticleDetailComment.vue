@@ -12,7 +12,12 @@
         :params="{ username: comment.author.username }"
         class="comment-author"
       >
-        <img :src="comment.author.image" class="comment-author-img" />
+        <img
+          v-if="comment.author.image"
+          :src="comment.author.image"
+          class="comment-author-img"
+        />
+        <i v-else class="ion-person comment-author-icon"></i>
       </AppLink>
 
       &nbsp;
@@ -63,3 +68,13 @@ const showRemove = computed(
     props.username === props.comment.author.username
 );
 </script>
+<style scoped>
+.comment-author-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  background: #fff;
+}
+</style>

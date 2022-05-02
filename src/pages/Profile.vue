@@ -8,7 +8,14 @@
               Profile is downloading...
             </div>
             <template v-else>
-              <img :src="profile.image" class="user-img" />
+              <div class="avatar">
+                <img
+                  v-if="profile.image"
+                  :src="profile.image"
+                  class="user-img"
+                />
+                <i v-else class="ion-person"></i>
+              </div>
 
               <h4>{{ profile.username }}</h4>
 
@@ -87,5 +94,17 @@ const showFollow = computed<boolean>(
 
 .align-left {
   text-align: left;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  font-size: 3rem;
+  line-height: 100px;
+  color: #fff;
+  background: #5cb85c !important;
+  border-radius: 50%;
 }
 </style>
