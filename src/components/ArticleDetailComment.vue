@@ -26,7 +26,7 @@
       </AppLink>
 
       <span class="date-posted">
-        {{ new Date(comment.created).toLocaleDateString() }}
+        {{ new Date(comment.created).toLocaleString() }}
       </span>
 
       <span class="mod-options">

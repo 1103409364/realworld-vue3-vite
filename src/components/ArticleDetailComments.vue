@@ -23,11 +23,7 @@ const slug = route.params.slug as string;
 const username = computed(() => user.value?.username);
 
 const comments = ref<ArticleComment[]>([]);
-
-const addComment = async (comment: ArticleComment) => {
-  comments.value.unshift(comment);
-};
-
+const addComment = (comment: ArticleComment) => comments.value.unshift(comment);
 const removeComment = async (commentId: number) => {
   await deleteComment(slug, commentId);
   comments.value = comments.value.filter((c) => c.id !== commentId);
