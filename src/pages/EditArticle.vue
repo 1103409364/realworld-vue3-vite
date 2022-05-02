@@ -30,7 +30,7 @@
             </fieldset>
             <fieldset class="form-group">
               <input
-                v-model="newTag"
+                v-model="newTag.tag"
                 type="text"
                 class="form-control"
                 placeholder="Enter tags"
@@ -38,13 +38,14 @@
                 @keypress.enter.prevent="addTag"
               />
               <div class="tag-list">
+                <!-- TODO:调接口删除 -->
                 <span
-                  v-for="tag in form.tags"
-                  :key="tag"
+                  v-for="(tag, i) in form.tags"
+                  :key="tag.id"
                   class="tag-default tag-pill"
                 >
-                  <i class="ion-close-round" @click="removeTag(tag)" />
-                  {{ tag }}
+                  <i class="ion-close-round" @click="removeTag(i)" />
+                  {{ tag.tag }}
                 </span>
               </div>
             </fieldset>
@@ -72,7 +73,7 @@ interface FormState {
   title: string;
   description: string;
   body: string;
-  tags: string[];
+  tags: Tag[];
 }
 
 const route = useRoute();
@@ -86,22 +87,19 @@ const form: FormState = reactive({
   tags: [],
 });
 
-const newTag = ref<string>("");
+const newTag = ref<Tag>({ tag: "" });
 const addTag = () => {
-  form.tags.push(newTag.value.trim());
-  newTag.value = "";
+  form.tags.push({ ...newTag.value });
+  newTag.value.tag = "";
 };
-const removeTag = (tag: string) => {
-  form.tags = form.tags.filter((t) => t !== tag);
-};
-
+const removeTag = (i: number) => form.tags.splice(i, 1);
 async function fetchArticle(slug: string) {
   const article = await getArticle(slug);
   Object.assign(form, article);
   // form.title = article.title;
   // form.description = article.description;
   // form.body = article.body;
-  form.tags = article.tags.map((t) => t.tag);
+  // form.tags = article.tags.map((t) => t.tag);
 }
 
 onMounted(() => {
