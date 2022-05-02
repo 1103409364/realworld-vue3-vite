@@ -1,7 +1,12 @@
 <template>
   <div class="article-meta">
-    <AppLink name="profile" :params="{ username: article.author.username }">
-      <img :src="article.author.image" />
+    <AppLink
+      class="avatar"
+      name="profile"
+      :params="{ username: article.author.username }"
+    >
+      <img v-if="article.author.image" :src="article.author.image" />
+      <i v-else class="ion-person"></i>
     </AppLink>
 
     <div class="info">
@@ -14,7 +19,7 @@
       </AppLink>
 
       <span class="date">
-        {{ new Date(article.createdAt).toLocaleDateString() }}
+        {{ new Date(article.created).toLocaleDateString() }}
       </span>
     </div>
 

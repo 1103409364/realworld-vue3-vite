@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 
 import Harlem from "@harlem/core";
-
+import "src/assets/style/global.css";
 import { router } from "./router";
 
 import registerGlobalComponents from "./plugins/global-components";

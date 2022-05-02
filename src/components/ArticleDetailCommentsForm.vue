@@ -16,7 +16,15 @@
       />
     </div>
     <div class="card-footer">
-      <img :src="profile.image" class="comment-author-img" />
+      <div class="avatar">
+        <img
+          v-if="profile.image"
+          :src="profile.image"
+          class="comment-author-img"
+        />
+        <i v-else class="ion-person"></i>
+      </div>
+
       <button
         aria-label="Submit"
         type="submit"
@@ -58,3 +66,9 @@ const submitComment = async () => {
   comment.value = "";
 };
 </script>
+<style scoped>
+.avatar {
+  color: #fff;
+  background: #5cb85c;
+}
+</style>

@@ -77,16 +77,3 @@ const { favoriteProcessGoing, favoriteArticle } = useFavoriteArticle({
   onUpdate: (newArticle: Article): void => emit("update", newArticle),
 });
 </script>
-
-<style scoped>
-.avatar {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  font-size: 1.5rem;
-  line-height: 32px;
-  text-align: center;
-  background: #f3f3f3;
-  border-radius: 50%;
-}
-</style>

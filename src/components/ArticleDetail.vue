@@ -49,3 +49,9 @@ const updateArticle = (newArticle: Article) => {
   Object.assign(article, newArticle);
 };
 </script>
+<style>
+/* @import url("src/assets/style/markdown/swiss.css"); */
+img {
+  max-width: 100%;
+}
+</style>
