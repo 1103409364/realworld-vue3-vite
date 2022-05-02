@@ -23,7 +23,7 @@ const article: Article = {
 This is **Strong** content.`,
   favorite: false,
   favoritesCount: 0,
-  createdAt: "2020-01-01T00:00:00Z",
+  created: "2020-01-01T00:00:00Z",
   updatedAt: "2020-01-01T00:00:00Z",
 };
 
@@ -31,7 +31,7 @@ const comment: ArticleComment = {
   id: 1,
   author,
   body: "Comment body",
-  createdAt: "2020-01-01T00:00:00Z",
+  created: "2020-01-01T00:00:00Z",
   updatedAt: "2020-01-01T00:00:00Z",
 };
 

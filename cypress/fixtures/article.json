@@ -3,7 +3,7 @@
     "title": "Article title",
     "slug": "article-title",
     "body": "# Article body\n\nThis is **Strong** text",
-    "createdAt": "2020-11-01T14:59:39.404Z",
+    "created": "2020-11-01T14:59:39.404Z",
     "updatedAt": "2020-11-01T14:59:39.404Z",
     "tagList": [],
     "description": "this is descripion",

@@ -1,6 +1,6 @@
 declare interface ArticleComment {
   id: number;
-  createdAt: string;
+  created: string;
   updatedAt: string;
   body: string;
   author: Profile;
