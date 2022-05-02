@@ -18,7 +18,7 @@
           {{ article.author.username }}
         </AppLink>
         <span class="date">
-          {{ new Date(article.created).toDateString() }}
+          {{ new Date(article.created).toLocaleString() }}
         </span>
       </div>
 

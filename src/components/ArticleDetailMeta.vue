@@ -19,7 +19,7 @@
       </AppLink>
 
       <span class="date">
-        {{ new Date(article.created).toLocaleDateString() }}
+        {{ new Date(article.created).toLocaleString() }}
       </span>
     </div>
 
