@@ -6,3 +6,4 @@ src/assets
 public
 dist
 components.d.ts
+vite.config.ts
