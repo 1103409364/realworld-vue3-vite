@@ -6,7 +6,7 @@
       v-for="tag in tags"
       :key="tag.id"
       name="tag"
-      :params="{ tag }"
+      :params="{ tag: tag.tag }"
       class="tag-pill tag-default"
     >
       {{ tag.tag }}
