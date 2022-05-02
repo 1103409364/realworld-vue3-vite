@@ -1,10 +1,11 @@
-import { CONFIG } from "../config";
 import FetchRequest from "../utils/request";
 
 export const limit = 10;
 
 export const request = new FetchRequest({
-  prefix: `${CONFIG.API_HOST}/api`,
+  prefix: `${import.meta.env.VITE_APP_API_HOST}:${
+    import.meta.env.VITE_APP_API_PORT
+  }${import.meta.env.VITE_APP_API_PREFIX}`,
   headers: {
     "Content-Type": "application/json",
   },

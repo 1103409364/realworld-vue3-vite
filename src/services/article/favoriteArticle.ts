@@ -10,7 +10,6 @@ export async function postFavoriteArticle(
     `/articles/${slug}/favorite`
   );
   const result2 = mapAuthorizationResponse<ArticleResponse>(result1);
-
   if (result2.isOk()) return success(result2.value.article);
   return fail(result2.value);
 }
