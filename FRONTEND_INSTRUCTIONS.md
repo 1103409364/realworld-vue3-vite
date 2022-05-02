@@ -22,7 +22,7 @@ Simply point your [API requests](https://github.com/gothinkster/realworld/tree/m
     - Delete comment button (only shown to comment's author)
 - Profile page (URL: /#/profile/:username, /#/profile/:username/favorites )
     - Show basic user info
-    - List of articles populated from author's created articles or author's favorited articles
+    - List of articles populated from author's created articles or author's favorite articles
 
 # Styles
 
