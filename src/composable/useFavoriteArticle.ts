@@ -9,20 +9,19 @@ import type { Either } from "src/utils/either";
 import { ComputedRef } from "vue";
 
 interface useFavoriteArticleProps {
-  isFavorited: ComputedRef<boolean>;
+  isFavorite: ComputedRef<boolean>;
   articleSlug: ComputedRef<string>;
   onUpdate: (newArticle: Article) => void;
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/explicit-function-return-type
 export const useFavoriteArticle = ({
-  isFavorited,
+  isFavorite,
   articleSlug,
   onUpdate,
 }: useFavoriteArticleProps) => {
   const favoriteArticle = async (): Promise<void> => {
     let response: Either<AuthorizationError, Article>;
-    if (isFavorited.value) {
+    if (isFavorite.value) {
       response = await deleteFavoriteArticle(articleSlug.value);
     } else {
       response = await postFavoriteArticle(articleSlug.value);

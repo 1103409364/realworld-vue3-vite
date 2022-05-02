@@ -1,8 +1,13 @@
 <template>
   <div class="article-preview">
     <div class="article-meta">
-      <AppLink name="profile" :params="{ username: article.author.username }">
-        <img :src="article.author.image" />
+      <AppLink
+        class="avatar"
+        name="profile"
+        :params="{ username: article.author.username }"
+      >
+        <img v-if="article.author.image" :src="article.author.image" />
+        <i v-else class="ion-person"></i>
       </AppLink>
       <div class="info">
         <AppLink
@@ -13,16 +18,16 @@
           {{ article.author.username }}
         </AppLink>
         <span class="date">
-          {{ new Date(article.createdAt).toDateString() }}
+          {{ new Date(article.created).toDateString() }}
         </span>
       </div>
 
       <button
         :aria-label="
-          article.favorited ? 'Unfavorite article' : 'Favorite article'
+          article.favorite ? 'Unfavorite article' : 'Favorite article'
         "
         class="btn btn-sm pull-xs-right"
-        :class="[article.favorited ? 'btn-primary' : 'btn-outline-primary']"
+        :class="[article.favorite ? 'btn-primary' : 'btn-outline-primary']"
         :disabled="favoriteProcessGoing"
         @click="() => favoriteArticle()"
       >
@@ -67,8 +72,21 @@ const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 const { favoriteProcessGoing, favoriteArticle } = useFavoriteArticle({
-  isFavorited: computed(() => props.article.favorited),
+  isFavorite: computed(() => props.article.favorite),
   articleSlug: computed(() => props.article.slug),
   onUpdate: (newArticle: Article): void => emit("update", newArticle),
 });
 </script>
+
+<style scoped>
+.avatar {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  font-size: 1.5rem;
+  line-height: 32px;
+  text-align: center;
+  background: #f3f3f3;
+  border-radius: 50%;
+}
+</style>

@@ -31,16 +31,14 @@
     </button>
 
     <button
-      :aria-label="
-        article.favorited ? 'Unfavorite article' : 'Favorite article'
-      "
+      :aria-label="article.favorite ? 'Unfavorite article' : 'Favorite article'"
       class="btn btn-sm space"
-      :class="[article.favorited ? 'btn-primary' : 'btn-outline-primary']"
+      :class="[article.favorite ? 'btn-primary' : 'btn-outline-primary']"
       :disabled="favoriteProcessGoing"
       @click="favoriteArticle"
     >
       <i class="ion-heart space" />
-      {{ article.favorited ? "Unfavorite" : "Favorite" }} Article
+      {{ article.favorite ? "Unfavorite" : "Favorite" }} Article
       <span class="counter">({{ article.favoritesCount }})</span>
     </button>
 
@@ -98,7 +96,7 @@ const displayFollowButton = computed(
 );
 
 const { favoriteProcessGoing, favoriteArticle } = useFavoriteArticle({
-  isFavorited: computed(() => article.value.favorited),
+  isFavorite: computed(() => article.value.favorite),
   articleSlug: computed(() => article.value.slug),
   onUpdate: (newArticle) => emit("update", newArticle),
 });

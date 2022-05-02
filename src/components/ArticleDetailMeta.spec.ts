@@ -146,7 +146,7 @@ describe("# ArticleDetailMeta", () => {
     updateUser({ ...fixtures.user, username: "user2" });
     const { getByRole } = render(ArticleDetailMeta, {
       global: globalMountOptions,
-      props: { article: { ...fixtures.article, favorited: false } },
+      props: { article: { ...fixtures.article, favorite: false } },
     });
 
     await fireEvent.click(getByRole("button", { name: favoriteButton }));
@@ -158,7 +158,7 @@ describe("# ArticleDetailMeta", () => {
     updateUser({ ...fixtures.user, username: "user2" });
     const { getByRole } = render(ArticleDetailMeta, {
       global: globalMountOptions,
-      props: { article: { ...fixtures.article, favorited: true } },
+      props: { article: { ...fixtures.article, favorite: true } },
     });
 
     await fireEvent.click(getByRole("button", { name: unfavoriteButton }));

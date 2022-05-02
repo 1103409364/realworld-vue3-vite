@@ -45,7 +45,7 @@
       <div class="row">
         <div class="col-xs-12 col-md-10 offset-md-1">
           <Suspense>
-            <ArticlesList use-user-feed use-user-favorited />
+            <ArticlesList use-user-feed use-user-favorite />
             <template #fallback>Articles are downloading...</template>
           </Suspense>
         </div>
@@ -84,6 +84,7 @@ const showFollow = computed<boolean>(
 .space {
   margin-right: 4px;
 }
+
 .align-left {
   text-align: left;
 }

@@ -7,6 +7,6 @@ declare interface Article {
   tagList: string[];
   description: string;
   author: Profile;
-  favorited: boolean;
+  favorite: boolean;
   favoritesCount: number;
 }

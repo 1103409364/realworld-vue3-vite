@@ -21,7 +21,7 @@ const article: Article = {
   body: `# Article body
 
 This is **Strong** content.`,
-  favorited: false,
+  favorite: false,
   favoritesCount: 0,
   createdAt: "2020-01-01T00:00:00Z",
   updatedAt: "2020-01-01T00:00:00Z",

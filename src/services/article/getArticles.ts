@@ -9,7 +9,7 @@ export function getFavoritedArticles(
   username: string,
   page = 1
 ): Promise<ArticlesResponse> {
-  const params = { limit, offset: (page - 1) * limit, favorited: username };
+  const params = { limit, offset: (page - 1) * limit, favorite: username };
   return request.get<ArticlesResponse>("/articles", { params });
 }
 
