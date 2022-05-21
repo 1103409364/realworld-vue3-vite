@@ -1,7 +1,13 @@
+declare interface ResponseData<T> {
+  code: number;
+  message: string;
+  data: T;
+}
 declare interface UserResponse {
   user: User;
 }
 declare interface Tag {
+  id: string;
   tag: string;
 }
 declare interface TagsResponse {

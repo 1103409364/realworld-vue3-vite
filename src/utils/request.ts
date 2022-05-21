@@ -44,7 +44,10 @@ export default class FetchRequest {
     response: Response
   ): Promise<Either<NetworkError, T>> => {
     if (response.ok) {
-      return response.json().then((json) => success(json as T));
+      return response.json().then((json) => {
+        json.code === 0 && (json = json.data);
+        return success(json as T);
+      });
     }
 
     return Promise.resolve(fail(new NetworkError(response)));
@@ -54,7 +57,11 @@ export default class FetchRequest {
     response: Response
   ): Promise<T> => {
     if (response.ok) {
-      return response.json();
+      return response.json().then((json) => {
+        // code 业务状态码，不为 0 在这里处理错误
+        json.code === 0 && (json = json.data);
+        return json as T;
+      });
     }
 
     throw new NetworkError(response);
