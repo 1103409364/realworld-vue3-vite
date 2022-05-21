@@ -1,7 +1,7 @@
 declare interface UserResponse {
   user: User;
 }
-export interface Tag {
+declare interface Tag {
   tag: string;
 }
 declare interface TagsResponse {
