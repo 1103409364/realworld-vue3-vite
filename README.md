@@ -9,14 +9,13 @@
 - [Demo](https://vue3-realworld-example-app-mutoe.vercel.app)
 - [RealWorld](https://github.com/gothinkster/realworld)
 
-
 This codebase was created to demonstrate a fully fledged fullstack application built with **Vue3** including CRUD operations, authentication, routing, pagination, and more.
 
 We've gone to great lengths to adhere to the **Vue3** community styleguides & best practices.
 
 For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 
-# What works?
+## What works?
 
 - [x] [Vite](https://github.com/vitejs/vite)
 - [x] [Composition API](https://composition-api.vuejs.org/)
@@ -29,14 +28,14 @@ For more information on how to this works with other frontends/backends, head ov
 - [x] Unit test ([Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro))
 - [x] E2E test ([Cypress](https://docs.cypress.io))
 
-#### What works in [ref-sugar branch](https://github.com/mutoe/vue3-realworld-example-app/tree/ref-sugar) (based on the master branch)
+### What works in [ref-sugar branch](https://github.com/mutoe/vue3-realworld-example-app/tree/ref-sugar) (based on the master branch)
 
 - [x] [Script ref sugar (take 2)](https://github.com/vuejs/rfcs/discussions/369)
 - [ ] Unit test [Cypress component test](https://docs.cypress.io/guides/component-testing/introduction#What-is-Component-Testing)
 
 > _[Why we have the second branch?](https://github.com/mutoe/vue3-realworld-example-app/commit/c0c983dba08cb31fc96bbc3eb7f15faf469d0624#commitcomment-47600736)_
 
-# Getting started
+## Getting started
 
 ```shell script
 yarn install
@@ -55,7 +54,11 @@ yarn cypress open # with GUI
 yarn test:e2e # headless
 ```
 
-# Contributors
+## details
+
+api in service directory
+
+## Contributors
 
 <a href="https://github.com/mutoe/vue3-realworld-example-app/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=mutoe/vue3-realworld-example-app" />
@@ -69,7 +72,3 @@ Made with [contributors-img](https://contributors-img.web.app).
 - [AlexBrohshtut/vue-ts-realworld-app](https://github.com/AlexBrohshtut/vue-ts-realworld-app) - vue2, ts, class-component
 - [devJang/nuxt-realworld](https://github.com/devJang/nuxt-realworld) - nuxt, ts, composition api
 - [levchak0910/vue3-ssr-realworld-example-app](https://github.com/levchak0910/vue3-ssr-realworld-example-app) - vue3, ssr
-
-## Sponsor
-
-Thanks **JetBrains** for providing IDE support!
