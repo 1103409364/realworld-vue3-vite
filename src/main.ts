@@ -1,7 +1,5 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-
-// import Harlem from "@harlem/core";
 import { createVuePlugin } from "harlem";
 import "src/assets/style/global.css";
 import { router } from "./router";

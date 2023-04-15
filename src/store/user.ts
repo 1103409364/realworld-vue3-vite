@@ -1,5 +1,5 @@
 import type { ComputedRef } from "vue";
-import { createStore } from "@harlem/core";
+import { createStore } from "harlem";
 
 import { request } from "../services";
 import Storage from "../utils/storage";

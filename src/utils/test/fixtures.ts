@@ -19,7 +19,6 @@ const article: Article = {
   tags: ["foo"],
   description: "Article description",
   body: `# Article body
-
 This is **Strong** content.`,
   favorite: false,
   favoritesCount: 0,

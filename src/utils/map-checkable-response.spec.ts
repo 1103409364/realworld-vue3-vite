@@ -4,7 +4,7 @@ import {
   AuthorizationError,
   NetworkError,
 } from "src/types/error";
-import { Either, fail, isEither, success } from "./either";
+import { type Either, fail, isEither, success } from "./either";
 import {
   mapAuthorizationResponse,
   mapValidationResponse,
@@ -51,9 +51,7 @@ describe("# mapAuthorizationResponse", function () {
 });
 
 describe("# mapValidationResponse", function () {
-  interface ValidationErrors {
-    [field: string]: string;
-  }
+  type ValidationErrors = Record<string, string>;
 
   it("should return Either with ValidationError and correct Response", function () {
     const RESPONSE = { ok: true };

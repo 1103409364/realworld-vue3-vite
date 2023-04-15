@@ -1,5 +1,5 @@
-import FetchRequest, { FetchRequestOptions } from "src/utils/request";
-import { Either, fail, isEither, success } from "src/utils/either";
+import FetchRequest, { type FetchRequestOptions } from "src/utils/request";
+import { type Either, fail, isEither, success } from "src/utils/either";
 
 import params2query from "src/utils/params-to-query";
 import mockFetch from "src/utils/test/mock-fetch";

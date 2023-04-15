@@ -1,4 +1,8 @@
-import { createRouter, createWebHashHistory, RouteParams } from "vue-router";
+import {
+  createRouter,
+  createWebHashHistory,
+  type RouteParams,
+} from "vue-router";
 import Home from "./pages/Home.vue";
 import { isAuthorized } from "./store/user";
 

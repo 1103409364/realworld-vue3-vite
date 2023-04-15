@@ -7,7 +7,7 @@ import {
   getProfileArticles,
 } from "src/services/article/getArticles";
 import createAsyncProcess from "src/utils/create-async-process";
-import { computed, ComputedRef, ref, watch } from "vue";
+import { computed, type ComputedRef, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 
 export function useArticles() {

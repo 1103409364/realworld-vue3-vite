@@ -18,7 +18,9 @@ function wrapTests<Item>({
   descFn(task, () => {
     list.forEach((item, index) => {
       const name = testName !== undefined ? testName(item, index) : "";
-      it(name, () => fn(item));
+      it(name, () => {
+        fn(item);
+      });
     });
   });
 }

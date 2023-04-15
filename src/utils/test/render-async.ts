@@ -8,14 +8,14 @@
  * https://github.com/testing-library/vue-testing-library/blob/main/src/render.js
  */
 
-import { mount, flushPromises, VueWrapper } from "@vue/test-utils";
+import { mount, flushPromises, type VueWrapper } from "@vue/test-utils";
 import { h, defineComponent, Suspense } from "vue";
 
 import {
   getQueriesForElement,
   prettyDOM,
-  RenderOptions,
-  RenderResult,
+  type RenderOptions,
+  type RenderResult,
 } from "@testing-library/vue";
 
 const mountedWrappers = new Set<VueWrapper<any>>();
@@ -61,7 +61,6 @@ Check out the test examples on GitHub for further details.`);
   // this removes the additional "data-v-app" div node from VTU:
   // https://github.com/vuejs/vue-test-utils-next/blob/master/src/mount.ts#L196-L213
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   unwrapNode(wrapper.parentElement);
 
   mountedWrappers.add(wrapper);
@@ -70,12 +69,13 @@ Check out the test examples on GitHub for further details.`);
   return {
     container,
     baseElement,
-    debug: (el = baseElement, maxLength, options: any) =>
+    debug: (el = baseElement, maxLength, options: any) => {
       Array.isArray(el)
-        ? el.forEach((e) =>
-            console.log(prettyDOM(e as Element, maxLength, options))
-          )
-        : console.log(prettyDOM(el as Element, maxLength, options)),
+        ? el.forEach((e) => {
+            console.log(prettyDOM(e as Element, maxLength, options));
+          })
+        : console.log(prettyDOM(el as Element, maxLength, options));
+    },
     unmount: () => wrapper.unmount(),
     html: () => wrapper.html(),
     emitted: () => wrapper.emitted(),

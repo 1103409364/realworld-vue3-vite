@@ -6,7 +6,7 @@ import {
 import type { AuthorizationError } from "src/types/error";
 import createAsyncProcess from "src/utils/create-async-process";
 import type { Either } from "src/utils/either";
-import { ComputedRef } from "vue";
+import { type ComputedRef } from "vue";
 
 interface useFavoriteArticleProps {
   isFavorite: ComputedRef<boolean>;
