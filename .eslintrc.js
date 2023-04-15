@@ -37,7 +37,7 @@ module.exports = {
         ignores: [],
       },
     ], //模板中组件名PascalCase
-    "vue/name-property-casing": ["error", "PascalCase"], //组件名PascalCase
+    "vue/component-definition-name-casing": ["error", "PascalCase"], //组件名PascalCase
     "vue/match-component-file-name": [
       "error",
       {
