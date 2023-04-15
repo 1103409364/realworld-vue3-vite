@@ -1,8 +1,8 @@
 # ![RealWorld Example App](logo.png)
 
 [![Codecov branch](https://img.shields.io/codecov/c/github/mutoe/vue3-realworld-example-app/master?logo=codecov&style=for-the-badge)](https://app.codecov.io/gh/mutoe/vue3-realworld-example-app/branch/master)
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/mutoe/vue3-realworld-example-app/Test/master?label=master&logo=github&style=for-the-badge)](https://github.com/mutoe/vue3-realworld-example-app/actions?query=branch%3Amaster)
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/mutoe/vue3-realworld-example-app/Test/script-setup?label=ref-sugar&logo=github&style=for-the-badge)](https://github.com/mutoe/vue3-realworld-example-app/actions?query=branch%3Aref-sugar)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/mutoe/vue3-realworld-example-app/test.yml?label=master&logo=github&style=for-the-badge)](https://github.com/mutoe/vue3-realworld-example-app/actions?query=branch%3Amaster)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/mutoe/vue3-realworld-example-app/test.yml?branch=script-setup&label=ref-sugar&logo=github&style=for-the-badge)](https://github.com/mutoe/vue3-realworld-example-app/actions?query=branch%3Aref-sugar)
 
 > ### [Vue3](https://v3.vuejs.org/) codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
@@ -22,10 +22,10 @@ For more information on how to this works with other frontends/backends, head ov
 - [x] [SFC \<script setup> sugar](https://v3.vuejs.org/api/sfc-script-setup.html)
 - [x] [Suspense](https://v3.vuejs.org/guide/component-dynamic-async.html#using-with-suspense) (Experimental)
 - [x] [Vue router](https://next.router.vuejs.org/)
-- [x] State management ([Harlem](https://github.com/andrewcourtice/harlem) ([await Vuex v5](https://github.com/mutoe/vue3-realworld-example-app/issues/15)))
-- [x] Type system [TypeScript](https://www.typescriptlang.org/) [Vue tsc](https://github.com/johnsoncodehk/vue-tsc)
-- [x] Linter [ESLint](https://eslint.vuejs.org/)
-- [x] Unit test ([Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro))
+- [x] [Pinia](https://pinia.vuejs.org/) for state management
+- [x] [TypeScript](https://www.typescriptlang.org/) and [Vue tsc](https://github.com/johnsoncodehk/volar/tree/master/vue-language-tools/vue-tsc) for static analysis
+- [x] [ESLint](https://eslint.vuejs.org/) for syntax checking and code styling
+- [x] Component test ([Cypress component testing](https://docs.cypress.io/guides/component-testing))
 - [x] E2E test ([Cypress](https://docs.cypress.io))
 
 ### What works in [ref-sugar branch](https://github.com/mutoe/vue3-realworld-example-app/tree/ref-sugar) (based on the master branch)
@@ -38,20 +38,21 @@ For more information on how to this works with other frontends/backends, head ov
 ## Getting started
 
 ```shell script
-yarn install
+pnpm install
 
 # Development
-yarn dev
+pnpm dev
 
 # Build dist
-yarn build
+pnpm build
 
 # Run unit tests
-yarn test:unit
+pnpm test:unit
+pnpm test:unit:ci
 
 # Run E2E tests
-yarn cypress open # with GUI
-yarn test:e2e # headless
+pnpm test:e2e
+pnpm test:e2e:ci
 ```
 
 ## details

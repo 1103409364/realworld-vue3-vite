@@ -1,10 +1,11 @@
 import vue from "@vitejs/plugin-vue";
-import { resolve } from "path";
+import { fileURLToPath, URL } from "url";
+// import { resolve } from "path";
 import { defineConfig, loadEnv } from "vite";
 import components from "unplugin-vue-components/vite";
 import analyzer from "rollup-plugin-analyzer";
 // const REPLACEMENT = `${path.resolve(__dirname, "./src")}/`;
-export default ({ mode }) => {
+export default ({ mode }: { mode: string }) => {
   const ENV = loadEnv(mode, process.cwd());
   const API_PREFIX = ENV.VITE_APP_API_PREFIX || "/api";
   const API_HOST = ENV.VITE_APP_API_HOST || "http://localhost";
@@ -15,7 +16,7 @@ export default ({ mode }) => {
     base: loadEnv(mode, process.cwd()).VITE_APP_BASE_PATH, // 开发以及部署的base路径
     resolve: {
       alias: {
-        src: resolve(__dirname, "src"),
+        src: fileURLToPath(new URL("./src", import.meta.url)), // resolve(__dirname, "src"),
       },
     },
     plugins: [

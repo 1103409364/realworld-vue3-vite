@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import { createVuePlugin } from "harlem";
+import { createPinia } from "pinia";
 import "src/assets/style/global.css";
 import { router } from "./router";
 
@@ -9,7 +9,7 @@ import setAuthorizationToken from "./plugins/set-authorization-token";
 
 const app = createApp(App);
 app.use(router);
-app.use(createVuePlugin());
+app.use(createPinia());
 
 setAuthorizationToken();
 registerGlobalComponents(app);

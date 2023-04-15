@@ -16,8 +16,8 @@
           v-if="comment.author.image"
           :src="comment.author.image"
           class="comment-author-img"
+          :alt="comment.author.username"
         />
-        <i v-else class="ion-person comment-author-icon"></i>
       </AppLink>
 
       &nbsp;
@@ -49,9 +49,10 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import type { Comment } from "src/services/api";
 
 interface Props {
-  comment: ArticleComment;
+  comment: Comment;
   username?: string;
 }
 

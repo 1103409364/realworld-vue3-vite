@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 interface WrapTestsProps<Item> {
   task: string;
   list: Item[];
@@ -13,17 +15,25 @@ function wrapTests<Item>({
   testName,
   only = false,
 }: WrapTestsProps<Item>): void {
-  const descFn = only ? describe.only : describe;
+  const descFn = only ? context.only : context;
 
   descFn(task, () => {
-    list.forEach((item, index) => {
+    for (const [index, item] of list.entries()) {
       const name = testName !== undefined ? testName(item, index) : "";
       it(name, () => {
         fn(item);
       });
-    });
+    }
   });
 }
+wrapTests.only = function <Item>({
+  task,
+  list,
+  fn,
+  testName,
+}: WrapTestsProps<Item>): ReturnType<typeof wrapTests> {
+  wrapTests({ task, list, fn, testName, only: true });
+};
 wrapTests.only = function <Item>({
   task,
   list,

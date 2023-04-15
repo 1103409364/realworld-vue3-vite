@@ -1,13 +1,9 @@
 import type { AppRouteNames } from "src/router";
-import {
-  getArticles,
-  getArticlesByTag,
-  getFavoritedArticles,
-  getFeeds,
-  getProfileArticles,
-} from "src/services/article/getArticles";
-import createAsyncProcess from "src/utils/create-async-process";
-import { computed, type ComputedRef, ref, watch } from "vue";
+import { pageToOffset, api } from "src/services";
+import type { Article } from "src/services/api";
+import useAsync from "src/utils/use-async";
+import type { ComputedRef } from "vue";
+import { computed, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 
 export function useArticles() {
@@ -19,18 +15,31 @@ export function useArticles() {
 
   async function fetchArticles(): Promise<void> {
     articles.value = [];
-    let responsePromise: null | Promise<ArticlesResponse> = null;
+    let responsePromise: null | Promise<{
+      articles: Article[];
+      articlesCount: number;
+    }> = null;
 
     if (articlesType.value === "my-feed") {
-      responsePromise = getFeeds(page.value);
+      responsePromise = api.articles
+        .getArticlesFeed(pageToOffset(page.value))
+        .then((res) => res.data);
     } else if (articlesType.value === "tag-feed" && tag.value) {
-      responsePromise = getArticlesByTag(tag.value, page.value);
+      responsePromise = api.articles
+        .getArticles({ tag: tag.value, ...pageToOffset(page.value) })
+        .then((res) => res.data);
     } else if (articlesType.value === "user-feed" && username.value) {
-      responsePromise = getProfileArticles(username.value, page.value);
+      responsePromise = api.articles
+        .getArticles({ author: username.value, ...pageToOffset(page.value) })
+        .then((res) => res.data);
     } else if (articlesType.value === "user-favorites-feed" && username.value) {
-      responsePromise = getFavoritedArticles(username.value, page.value);
+      responsePromise = api.articles
+        .getArticles({ favorite: username.value, ...pageToOffset(page.value) })
+        .then((res) => res.data);
     } else if (articlesType.value === "global-feed") {
-      responsePromise = getArticles(page.value);
+      responsePromise = api.articles
+        .getArticles(pageToOffset(page.value))
+        .then((res) => res.data);
     }
 
     if (responsePromise !== null) {
@@ -38,7 +47,7 @@ export function useArticles() {
       articles.value = response.articles;
       articlesCount.value = response.articlesCount;
     } else {
-      throw new Error(`Articles type "${articlesType.value}" not supported`);
+      console.error(`Articles type "${articlesType.value}" not supported`);
     }
   }
 
@@ -51,7 +60,7 @@ export function useArticles() {
   };
 
   const { active: articlesDownloading, run: runWrappedFetchArticles } =
-    createAsyncProcess(fetchArticles);
+    useAsync(fetchArticles);
 
   watch(metaChanged, async () => {
     if (page.value !== 1) changePage(1);

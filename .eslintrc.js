@@ -4,21 +4,23 @@ module.exports = {
     node: true,
     "vue/setup-compiler-macros": true,
   },
+  parser: "vue-eslint-parser",
+  parserOptions: {
+    parser: "@typescript-eslint/parser",
+    sourceType: "module",
+    extraFileExtensions: [".vue"],
+  },
   extends: [
+    // '@mutoe/eslint-config-preset-vue',
     "plugin:vue/vue3-recommended",
     "standard-with-typescript",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "@vue/eslint-config-prettier",
     "@vue/prettier",
+    "plugin:cypress/recommended",
+    "plugin:chai-friendly/recommended",
   ],
-  parser: "vue-eslint-parser",
-  parserOptions: {
-    parser: "@typescript-eslint/parser",
-    project: "./tsconfig.json",
-    sourceType: "module",
-    extraFileExtensions: [".vue", ".d.ts"],
-  },
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
@@ -76,12 +78,17 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["src/**/*.spec.ts"],
+      files: ["src/composable/*.ts", "src/**/use*.ts"],
       rules: {
-        "@typescript-eslint/no-non-null-assertion": "off",
-        "@typescript-eslint/no-unnecessary-type-assertion": "off",
-        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
       },
+    },
+    {
+      files: ["src/**/*.{cy,spec}.{js,ts,jsx,tsx}"],
+      extends: [
+        "plugin:cypress/recommended",
+        "plugin:chai-friendly/recommended",
+      ],
     },
   ],
 };

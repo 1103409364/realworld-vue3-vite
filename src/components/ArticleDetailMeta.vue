@@ -5,8 +5,7 @@
       name="profile"
       :params="{ username: article.author.username }"
     >
-      <img v-if="article.author.image" :src="article.author.image" />
-      <i v-else class="ion-person"></i>
+      <img :src="article.author.image" :alt="article.author.username" />
     </AppLink>
 
     <div class="info">
@@ -71,11 +70,13 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import { useFavoriteArticle } from "src/composable/useFavoriteArticle";
 import { useFollow } from "src/composable/useFollowProfile";
 import { routerPush } from "src/router";
-import { deleteArticle } from "src/services/article/deleteArticle";
-import { checkAuthorization, user } from "src/store/user";
+import { api } from "src/services";
+import type { Article, Profile } from "src/services/api";
+import { useUserStore } from "src/store/user";
 import { computed, toRefs } from "vue";
 
 interface Props {
@@ -89,15 +90,14 @@ const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 const { article } = toRefs(props);
+const { user, isAuthorized } = storeToRefs(useUserStore());
 const displayEditButton = computed(
   () =>
-    checkAuthorization(user) &&
-    user.value.username === article.value.author.username
+    isAuthorized.value && user.value?.username === article.value.author.username
 );
 const displayFollowButton = computed(
   () =>
-    checkAuthorization(user) &&
-    user.value.username !== article.value.author.username
+    isAuthorized.value && user.value?.username !== article.value.author.username
 );
 
 const { favoriteProcessGoing, favoriteArticle } = useFavoriteArticle({
@@ -107,7 +107,7 @@ const { favoriteProcessGoing, favoriteArticle } = useFavoriteArticle({
 });
 
 const onDelete = async () => {
-  await deleteArticle(article.value.slug);
+  await api.articles.deleteArticle(article.value.slug);
   await routerPush("global-feed");
 };
 

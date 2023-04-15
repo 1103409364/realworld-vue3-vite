@@ -4,15 +4,14 @@
       <AppLink
         class="avatar"
         name="profile"
-        :params="{ username: article.author.username }"
+        :params="{ username: props.article.author.username }"
       >
-        <img v-if="article.author.image" :src="article.author.image" />
-        <i v-else class="ion-person"></i>
+        <img :src="article.author.image" :alt="props.article.author.username" />
       </AppLink>
       <div class="info">
         <AppLink
           name="profile"
-          :params="{ username: article.author.username }"
+          :params="{ username: props.article.author.username }"
           class="author"
         >
           {{ article.author.username }}
@@ -38,7 +37,7 @@
 
     <AppLink
       name="article"
-      :params="{ slug: article.slug }"
+      :params="{ slug: props.article.slug }"
       class="preview-link"
     >
       <h1>{{ article.title }}</h1>
@@ -59,6 +58,7 @@
 
 <script setup lang="ts">
 import { useFavoriteArticle } from "src/composable/useFavoriteArticle";
+import type { Article } from "src/services/api";
 import { computed } from "vue";
 
 interface Props {

@@ -11,23 +11,30 @@
 </template>
 
 <script setup lang="ts">
-import { getCommentsByArticle } from "src/services/comment/getComments";
-import { deleteComment } from "src/services/comment/postComment";
-import { user } from "src/store/user";
+import { storeToRefs } from "pinia";
+import { api } from "src/services";
+import type { Comment } from "src/services/api";
+import { useUserStore } from "src/store/user";
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
+import ArticleDetailComment from "./ArticleDetailComment.vue";
+import ArticleDetailCommentsForm from "./ArticleDetailCommentsForm.vue";
 
 const route = useRoute();
 const slug = route.params.slug as string;
 
+const { user } = storeToRefs(useUserStore());
+
 const username = computed(() => user.value?.username);
 
-const comments = ref<ArticleComment[]>([]);
-const addComment = (comment: ArticleComment) => comments.value.unshift(comment);
-const removeComment = async (commentId: number) => {
-  await deleteComment(slug, commentId);
-  comments.value = comments.value.filter((c) => c.id !== commentId);
+const comments = ref<Comment[]>([]);
+
+const addComment = async (comment: Comment) => {
+  comments.value.unshift(comment);
 };
 
-comments.value = await getCommentsByArticle(slug);
+const removeComment = async (commentId: number) => {
+  await api.articles.deleteArticleComment(slug, commentId);
+  comments.value = comments.value.filter((c) => c.id !== commentId);
+};
 </script>

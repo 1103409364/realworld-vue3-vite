@@ -16,15 +16,11 @@
       />
     </div>
     <div class="card-footer">
-      <div class="avatar">
-        <img
-          v-if="profile.image"
-          :src="profile.image"
-          class="comment-author-img"
-        />
-        <i v-else class="ion-person"></i>
-      </div>
-
+      <img
+        :src="profile.image"
+        class="comment-author-img"
+        :alt="profile.username"
+      />
       <button
         aria-label="Submit"
         type="submit"
@@ -38,30 +34,36 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import { useProfile } from "src/composable/useProfile";
-import { postComment } from "src/services/comment/postComment";
-import { checkAuthorization, user } from "src/store/user";
+import { api } from "src/services";
+import { useUserStore } from "src/store/user";
 import { computed, ref } from "vue";
+import type { Comment } from "src/services/api";
 
 interface Props {
   articleSlug: string;
 }
 interface Emits {
-  (e: "add-comment", comment: ArticleComment): void;
+  (e: "add-comment", comment: Comment): void;
 }
 
 const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
-const username = computed(() =>
-  checkAuthorization(user) ? user.value.username : ""
-);
+const { user } = storeToRefs(useUserStore());
+
+const username = computed(() => user.value?.username ?? "");
 const { profile } = useProfile({ username });
 
 const comment = ref("");
 
 const submitComment = async () => {
-  const newComment = await postComment(props.articleSlug, comment.value);
+  const newComment = await api.articles
+    .createArticleComment(props.articleSlug, {
+      comment: { body: comment.value },
+    })
+    .then((res) => res.data.comment);
   emit("add-comment", newComment);
   comment.value = "";
 };

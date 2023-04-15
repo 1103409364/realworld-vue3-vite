@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.app.json",
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue",
+    "cypress/support/component.*",
+    "cypress/support/commands.ts",
+    "cypress/fixtures/**/*"
+  ],
+  "exclude": [],
+  "compilerOptions": {
+    "ignoreDeprecations": "5.0", // importsNotUsedAsValues。这个选项被标记为“已弃用”
+    "composite": true,
+    "types": ["cypress", "@testing-library/cypress"],
+    "noEmit": true
+  }
+}
