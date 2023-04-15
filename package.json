@@ -3,7 +3,6 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "prepare": "husky install",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview --port 4137",
@@ -17,6 +16,7 @@
     "test:e2e:ci": "npm run build && concurrently -rk -s first \"npm run serve\" \"cypress run --e2e -c baseUrl=http://localhost:4137\"",
     "test:e2e:prod": "cypress run --e2e -c baseUrl=https://vue3-realworld-example-app-mutoe.vercel.app",
     "test": "npm run test:unit:ci && npm run test:e2e:ci",
+    "prepare": "husky install",
     "generate:api": "curl -sL https://raw.githubusercontent.com/gothinkster/realworld/main/api/openapi.yml -o ./src/services/openapi.yml && sta -p ./src/services/openapi.yml -o ./src/services -n api.ts"
   },
   "dependencies": {
